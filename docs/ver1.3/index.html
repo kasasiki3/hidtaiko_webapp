@@ -3,23 +3,24 @@
   <head>
     <!-- Origin Trial Token, feature = WebUSB (For Chrome M57+), origin = https://webusb.github.io, expires = 2017-06-19 -->
     <meta http-equiv="origin-trial" data-feature="WebUSB (For Chrome M57+)" data-expires="2017-06-19" content="Ag83MurQOa5N4SKRCqqtSlbycfe08s5LgUiqEI7J3jTk2NEIpRp7SLPz2i+EBDuXyf+AeRMdD6BI++kTSJmGzQEAAABReyJvcmlnaW4iOiJodHRwczovL3dlYnVzYi5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYlVTQjIiLCJleHBpcnkiOjE0OTc4OTM2OTV9">
-    <title>HIDtaiko ver1.3</title>
+    <title>RGB LED</title>
     <script src="../hidtaiko.js"></script>
     <script src="hidtaiko3.js"></script>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     
-   <center> <h1><b>ver1.3接続器 感度調節</b></h1></center>
+    <center> <h1><b>ver1.3接続器 感度調節</b></h1></center>
+    <h2></h2>
     <p>
       <button id="connect">Connect</button> <span id="status"></span>
     </p>
-    <button id="save">save</button> 
-<h4>↓感度↓</h4>
+    <button id="save">save</button>
+
     <div class="slider-container">
     a0（右縁）
-      <input type="range" min="1" max="100" value="0" id="dx0"/>
-      <span id="valueDx0" class="slider-value">0</span>
+      <input type="range" min="1" max="100" value="10" id="dx0"/>
+      <span id="valueDx0" class="slider-value">10</span>
   </div> 
   
   <div class="slider-container">
@@ -64,6 +65,13 @@
   <input type="range" min="1" max="100" value="0" id="dxp"/>
   <span id="valueDxp" class="slider-value">0</span>
 </div>
+
+<div class="slider-container">
+  HA
+  <input type="range" min="0" max="30" value="0" id="dxh"/>
+  <span id="valueDxh" class="slider-value">0</span>
+</div>
+
 <h2>・使い方</h2>
 <p>
   <h3>1.接続器をswモードに設定し接続器を再起動する</h3>
@@ -86,7 +94,6 @@
   dmにお願いします！！
    <p><a href="https://lit.link/kasashiki" target=" blank">その他リンク</a></p>
    youtube,ブログ,販売やってます！！</div>
-
   <script>
   function updateSliderValue(sliderId, valueId) {
       let slider = document.getElementById(sliderId);
@@ -108,6 +115,7 @@
   updateSliderValue('dxb', 'valueDxb');
   updateSliderValue('dxc', 'valueDxc');
   updateSliderValue('dxp', 'valueDxp');
+  updateSliderValue('dxh', 'valueDxh');
   </script>
   </body>
 </html>
