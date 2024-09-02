@@ -15,8 +15,9 @@
       let Sliderb = document.querySelector('#dxb'); 
       let Sliderc = document.querySelector('#dxc'); 
       let Sliderp = document.querySelector('#dxp'); 
+      let Sliderh = document.querySelector('#dxh');  
       let port; // シリアルポート
-      let color = new Array(8);
+      let color = new Array(9);
       let colorin = 0;
       let receivedDataArray = []; // 受信データを格納する配列
       const rangeValue0 = document.querySelector('#valueDx0');
@@ -27,6 +28,7 @@
       const rangeValueb = document.querySelector('#valueDxb');
       const rangeValuec = document.querySelector('#valueDxc');
       const rangeValuep = document.querySelector('#valueDxp');
+      const rangeValueh = document.querySelector('#valueDxh');
       // シリアルポートに接続する関数
       function connect() {
         port.connect().then(() => {
@@ -40,7 +42,7 @@
             console.log(decodedText);
             color[colorin++] = decodedText;
             console.log(colorin);
-            if(colorin == 8){
+            if(colorin == 9){
               colorin = 0;
               console.log(color);
             }
@@ -55,6 +57,7 @@
             receivedDataArray[5] = dataArray[5];
             receivedDataArray[6] = dataArray[6];
             receivedDataArray[7] = dataArray[7];
+            receivedDataArray[8] = dataArray[8];
           //  receivedDataArray.push(...dataArray);
             console.log("Received Data Array: ", receivedDataArray);
             Slider0.value = receivedDataArray[0];
@@ -65,6 +68,7 @@
             Sliderb.value = receivedDataArray[5];
             Sliderc.value = receivedDataArray[6];
             Sliderp.value = receivedDataArray[7];
+            Sliderh.value = receivedDataArray[8];
             rangeValue0.textContent = receivedDataArray[0];
             rangeValue1.textContent = receivedDataArray[1];
             rangeValue2.textContent = receivedDataArray[2];
@@ -73,6 +77,7 @@
             rangeValueb.textContent = receivedDataArray[5];
             rangeValuec.textContent = receivedDataArray[6];
             rangeValuep.textContent = receivedDataArray[7];
+            rangeValueh.textContent = receivedDataArray[8];      
           };
   
           // データ受信エラー時の処理
@@ -91,7 +96,7 @@
           return;
         }
   
-        let view = new Uint8Array(8);
+        let view = new Uint8Array(9);
         view[0] = parseInt(Slider0.value); // a0のスライダーの値を取得
         view[1] = parseInt(Slider1.value);
         view[2] = parseInt(Slider2.value); 
@@ -100,6 +105,7 @@
         view[5] = parseInt(Sliderb.value); 
         view[6] = parseInt(Sliderc.value); 
         view[7] = parseInt(Sliderp.value); 
+        view[8] = parseInt(Sliderh.value); 
         port.send(view); // データをシリアルポートに送信
       }
   
@@ -112,6 +118,7 @@
       Sliderb.addEventListener('input', onUpdate);
       Sliderc.addEventListener('input', onUpdate);
       Sliderp.addEventListener('input', onUpdate);
+      Sliderh.addEventListener('input', onUpdate);
       
       // 接続ボタンがクリックされたときの処理
       connectButton.addEventListener('click', function() {
