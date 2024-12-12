@@ -147,7 +147,7 @@
   
       // 送信するデータを設定
       let view = new Uint8Array(1);
-      view[0] = 0;
+      view[0] = 240;
   
       // データを送信
       await port.send(view);
